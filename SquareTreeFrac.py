@@ -1,0 +1,35 @@
+import turtle
+screen = turtle.Screen()
+screen.title('Squares Tree - PythonTurtle.Academy')
+screen.setworldcoordinates(-1000,-1000,1000,1000)
+screen.tracer(0,0)
+turtle.speed(0)
+turtle.hideturtle()
+turtle.color('purple')
+
+def squaretree(x,y,length,tilt,n):
+    if n==0: return       
+    turtle.up()
+    turtle.goto(x,y)
+    turtle.down()
+    turtle.seth(tilt)
+    turtle.fd(length)
+    turtle.left(90)
+    turtle.fd(length)
+    x1,y1 = turtle.xcor(), turtle.ycor()
+    turtle.left(90)
+    turtle.fd(length)
+    x2,y2 = turtle.xcor(), turtle.ycor()
+    turtle.left(90)
+    turtle.fd(length)
+    turtle.left(90)
+
+    squaretree(x2,y2,length/2**0.5,tilt+45,n-1)
+    turtle.up()
+    turtle.goto(x1,y1)
+    turtle.seth(tilt+135)
+    turtle.fd(length/2**0.5)
+    squaretree(turtle.xcor(),turtle.ycor(),length/2**0.5,tilt-45,n-1)
+    
+squaretree(-150,-600,300,0,13)
+screen.update()
